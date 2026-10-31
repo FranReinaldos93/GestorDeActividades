@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="900.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.InscripcionController">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #C8CACC;" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/logo_hogar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Inscripción">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/agregar-usuario.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
+               </padding>
+            </Button>
+            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Actividades">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/lista.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
+               </padding>
+            </Button>
+            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Configuración">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/ajustes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
+               </padding>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </left>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Archivo">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Nuevo" />
+                        <MenuItem mnemonicParsing="false" text="Guardar" />
+                        <RadioMenuItem mnemonicParsing="false" text="Salir" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edición">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Preferencias" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ayuda">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Acerca de" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/logo_cabecera.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" spacing="5.0">
+                     <children>
+                        <Label text="Gestor de Actividades">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></Label>
+                        <Label text="Organiza, descubre e inscribete en actividades del centro" />
+                     </children>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/logo_usuario.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0" spacing="5.0">
+                     <children>
+                        <Label text="Fco Javier Reinaldos">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label text="Alumno 2º DAM" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: E9F2F5;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="80.0" prefWidth="900.0" spacing="5.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label text="Inscripción a actividades">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Completa el formulario para inscribirte a una activdaad del centro" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="30.0" right="10.0" top="22.0" />
+               </padding>
+            </VBox>
+            <HBox prefHeight="638.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="471.0" prefWidth="575.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox prefHeight="292.0" prefWidth="555.0" spacing="7.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Datos de inscripción">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <GridPane hgap="20.0" vgap="13.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Nombre *">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Apellidos *" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Email *" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Actividad *" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Fecha *" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtNombre" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtApellido" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtEmail" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cbActividad" prefHeight="25.0" prefWidth="266.0" GridPane.rowIndex="5" />
+                                    <DatePicker fx:id="dpFecha" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="Turno *" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="7">
+                                       <children>
+                                          <RadioButton fx:id="rbMañana" mnemonicParsing="false" text="Mañana">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="tgTurno" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="rbTarde" mnemonicParsing="false" text="Tarde" toggleGroup="$tgTurno" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="74.0" prefWidth="555.0" spacing="7.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Preferencias y consentimiento">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="cbFuturasAct" mnemonicParsing="false" text="Deseo recibir información sobre futuras actividades" />
+                              <CheckBox fx:id="cbNormas" mnemonicParsing="false" text="Acepto las normas de participación y la politica de privacidad" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="150.0" prefWidth="555.0" spacing="7.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Observaciones">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="taObservaciones" prefHeight="89.0" prefWidth="535.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="555.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="btLimpiarForm" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 7;" text="Limpiar" />
+                              <Button fx:id="btEnviarForm" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Enviar" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="474.0" prefWidth="325.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="151.0" prefWidth="305.0" spacing="5.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
+                           <children>
+                              <Label text="Información importante">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Plazas limitadas" />
+                              <Label text="La inscripción se confirmará por email" />
+                              <Label text="Una inscripción por actividad" />
+                              <Label text="Puedes modificar tu selección posteriormente" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="94.0" prefWidth="305.0" spacing="8.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
+                           <children>
+                              <Label text="¿Todo listo?">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Revisa tus datos y pulsa enviar" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" right="40.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></VBox>
+   </center>
+   <bottom>
+      <HBox prefHeight="32.0" prefWidth="582.0" spacing="80.0" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <Label text="Gestor de Actividades . v1.0 | IES Jose Luis Martinez Palomo" />
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label text="2ºDAM | Desarrollo de interfaces" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>
