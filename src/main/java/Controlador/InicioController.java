@@ -4,16 +4,33 @@
  */
 package Controlador;
 
+import Main.GestorDeActividades;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 /**
  * FXML Controller class
  *
- * @author xicoc
+ * @author Fco Javier Reinaldos Chuecos
  */
-public class InicioController implements Initializable {
+public class InicioController extends ControladorPrincipal implements Initializable {
+
+    @FXML
+    private Button btnInscripcion;
+    @FXML
+    private Button btnActividades;
+    @FXML
+    private Button btnConfiguracion;
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private MenuItem miSalir;
 
     /**
      * Initializes the controller class.
@@ -22,5 +39,6 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+
 }

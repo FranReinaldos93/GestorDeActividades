@@ -4,8 +4,11 @@
  */
 package Controlador;
 
+import Main.GestorDeActividades;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,12 +23,10 @@ import javafx.scene.control.ToggleGroup;
 /**
  * FXML Controller class
  *
- * @author xicoc
+ * @author Fco Javier Reinaldos Chuecos
  */
-public class InscripcionController implements Initializable {
+public class InscripcionController extends ControladorPrincipal implements Initializable {
 
-    @FXML
-    private Button btInscripcion;
     @FXML
     private TextField txtNombre;
     @FXML
@@ -52,6 +53,14 @@ public class InscripcionController implements Initializable {
     private Button btLimpiarForm;
     @FXML
     private Button btEnviarForm;
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnInscripcion;
+    @FXML
+    private Button btnConfiguracion;
+    @FXML
+    private Button btnActividades;
 
     /**
      * Initializes the controller class.
@@ -60,5 +69,5 @@ public class InscripcionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
 }

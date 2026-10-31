@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -26,7 +25,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #C8CACC;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
+            <Button fx:id="btnInicio" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInicio" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,7 +37,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inscripción">
+            <Button fx:id="btnInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInscripcion" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inscripción">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -50,7 +49,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Actividades">
+            <Button fx:id="btnActividades" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirActividades" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Actividades">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,7 +61,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Configuración">
+            <Button fx:id="btnConfiguracion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirConfiguracion" prefHeight="40.0" style="-fx-background-color: transparent;" text="Configuración">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,19 +86,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Archivo">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Nuevo" />
-                        <MenuItem mnemonicParsing="false" text="Guardar" />
-                        <RadioMenuItem mnemonicParsing="false" text="Salir" />
+                    <MenuItem fx:id="miNuevo" mnemonicParsing="false" onAction="#onMenuBarNuevo" text="Nuevo" />
+                        <MenuItem fx:id="miGuardar" mnemonicParsing="false" onAction="#onMenuBarGuardar" text="Guardar" />
+                        <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#onMenuBarSalir" text="Salir" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edición">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Preferencias" />
+                    <MenuItem fx:id="miPreferencias" mnemonicParsing="false" onAction="#onMenuBarPreferencias" text="Preferencias" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Ayuda">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Acerca de" />
+                    <MenuItem fx:id="miAcercaDe" mnemonicParsing="false" onAction="#onMenuBarAcercaDe" text="Acerca de" />
                   </items>
                 </Menu>
               </menus>
@@ -163,9 +162,9 @@
               <tabs>
                 <Tab text="Todas">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="422.0" prefWidth="880.0">
+                        <VBox>
                            <children>
-                              <HBox layoutX="14.0" layoutY="14.0" prefHeight="47.0" prefWidth="856.0" spacing="10.0">
+                              <HBox prefHeight="47.0" prefWidth="856.0" spacing="10.0">
                                  <children>
                                     <TextField promptText="Buscar Actividades..." HBox.hgrow="ALWAYS" />
                                     <ComboBox prefWidth="150.0" promptText="Categoría" />
@@ -178,11 +177,20 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 5;" text="Nueva Actividad" />
+                                    <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 5;" text="Nueva Actividad">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                                 </padding>
                               </HBox>
-                              <TableView layoutX="14.0" layoutY="51.0" prefHeight="382.0" prefWidth="857.0">
+                              <TableView prefHeight="382.0" prefWidth="857.0" VBox.vgrow="ALWAYS">
                                 <columns>
                                   <TableColumn prefWidth="200.0" text="Actividad" />
                                   <TableColumn prefWidth="150.0" text="Categoria" />
@@ -192,7 +200,7 @@
                                 </columns>
                               </TableView>
                            </children>
-                        </AnchorPane>
+                        </VBox>
                   </content>
                 </Tab>
                 <Tab text="Culturales">

@@ -9,7 +9,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
@@ -31,7 +30,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #C8CACC;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
+            <Button fx:id="btnInicio" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInicio" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,7 +42,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inscripción">
+            <Button fx:id="btnInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInscripcion" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inscripción">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -55,7 +54,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: transparent;" text="Actividades">
+            <Button fx:id="btnActividades" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirActividades" prefHeight="40.0" style="-fx-background-color: transparent;" text="Actividades">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,7 +66,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Configuración">
+            <Button fx:id="btnConfiguracion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirConfiguracion" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Configuración">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -92,19 +91,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Archivo">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Nuevo" />
-                        <MenuItem mnemonicParsing="false" text="Guardar" />
-                        <RadioMenuItem mnemonicParsing="false" text="Salir" />
+                    <MenuItem fx:id="miNuevo" mnemonicParsing="false" onAction="#onMenuBarNuevo" text="Nuevo" />
+                        <MenuItem fx:id="miGuardar" mnemonicParsing="false" onAction="#onMenuBarGuardar" text="Guardar" />
+                        <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#onMenuBarSalir" text="Salir" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edición">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Preferencias" />
+                    <MenuItem fx:id="miPreferencias" mnemonicParsing="false" onAction="#onMenuBarPreferencias" text="Preferencias" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Ayuda">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Acerca de" />
+                    <MenuItem fx:id="miAcercaDe" mnemonicParsing="false" onAction="#onMenuBarAcercaDe" text="Acerca de" />
                   </items>
                 </Menu>
               </menus>
@@ -178,9 +177,9 @@
               <tabs>
                 <Tab text="Apariencia">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="880.0">
+                        <VBox>
                            <children>
-                              <VBox layoutX="14.0" layoutY="14.0" prefHeight="482.0" prefWidth="853.0" spacing="10.0">
+                              <VBox prefHeight="482.0" prefWidth="853.0" spacing="10.0">
                                  <children>
                                     <VBox prefHeight="210.0" prefWidth="853.0" spacing="7.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
                                        <children>
@@ -235,8 +234,11 @@
                                              </children>
                                           </GridPane>
                                        </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
                                     </VBox>
-                                    <VBox prefHeight="162.0" prefWidth="853.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
+                                    <VBox prefHeight="203.0" prefWidth="880.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
                                        <children>
                                           <Label text="Opciones de visualización">
                                              <font>
@@ -288,8 +290,11 @@
                                             </content>
                                           </TitledPane>
                                        </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
                                     </VBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="121.0" prefWidth="853.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="77.0" prefWidth="860.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 7;" text="Restablecer">
                                              <graphic>
@@ -299,8 +304,11 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Guardar Cambios">
+                                          <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Guardar Cambios">
                                              <graphic>
                                                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -308,6 +316,9 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
                                           </Button>
                                        </children>
                                        <VBox.margin>
@@ -317,7 +328,7 @@
                                  </children>
                               </VBox>
                            </children>
-                        </AnchorPane>
+                        </VBox>
                   </content>
                 </Tab>
                 <Tab text="Notificaciones">
