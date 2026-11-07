@@ -29,6 +29,7 @@ public class GestorDeActividades extends Application{
         }
     
     //Metodo que permite intercambiar entre escenarios
+    //
         public static void setRoot(String fxml) throws IOException {
         escena.setRoot(loadFXML(fxml));
     }
