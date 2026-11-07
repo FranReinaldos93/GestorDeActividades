@@ -43,13 +43,13 @@ public abstract class ControladorPrincipal {
     
     }
     
+    
     //MenuBar
     
     //boton Nuevo
     @FXML 
     private void onMenuBarNuevo(ActionEvent event){
-        
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        Alert alerta= new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Pendiente");
         alerta.setHeaderText("Funcionalidad pendiente");
         alerta.setContentText("VACIO");
@@ -60,7 +60,8 @@ public abstract class ControladorPrincipal {
     //boton Guardar
     @FXML 
     private void onMenuBarGuardar(ActionEvent event){
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+
+        Alert alerta= new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Pendiente");
         alerta.setHeaderText("Funcionalidad pendiente");
         alerta.setContentText("VACIO");
@@ -72,13 +73,13 @@ public abstract class ControladorPrincipal {
     private void onMenuBarSalir(ActionEvent event) {
 
         //creación de la alerta de confirmación de salida
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Confirmaar Operación");
-        alerta.setHeaderText("Salir de la aplicación");
-        alerta.setContentText("¿Deseas cerrar la aplicación?");
+        Alert alertaConf = new Alert(Alert.AlertType.CONFIRMATION);
+        alertaConf.setTitle("Confirmaar Operación");
+        alertaConf.setHeaderText("Salir de la aplicación");
+        alertaConf.setContentText("¿Deseas cerrar la aplicación?");
         
         // si ok, cierra la aplicación, si no, no hace nada
-        Optional<ButtonType> resultado = alerta.showAndWait();
+        Optional<ButtonType> resultado = alertaConf.showAndWait();
         if (resultado.isPresent()
                 && resultado.get() == ButtonType.OK) {
             //para cerrar
@@ -90,7 +91,7 @@ public abstract class ControladorPrincipal {
     @FXML 
     private void onMenuBarPreferencias(ActionEvent event) {
 
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        Alert alerta= new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Pendiente");
         alerta.setHeaderText("Funcionalidad pendiente");
         alerta.setContentText("VACIO");
@@ -101,7 +102,8 @@ public abstract class ControladorPrincipal {
     
     @FXML
     private void onMenuBarAcercaDe(ActionEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+
+        Alert alerta= new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Acerce de...");
         alerta.setHeaderText("Información");
         alerta.setContentText("Proyecto: Gestor de Actividades\n" + "Autor: Fco Javier Reinaldos Chuecos\n"+"Versión: 1.0");

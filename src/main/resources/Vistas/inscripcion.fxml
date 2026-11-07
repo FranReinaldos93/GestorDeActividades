@@ -187,6 +187,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
                                     <Label text="Nombre *">
@@ -217,9 +218,14 @@
                                     <TextField fx:id="txtNombre" GridPane.rowIndex="1" />
                                     <TextField fx:id="txtApellido" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="txtEmail" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                                    <ComboBox fx:id="cbActividad" prefHeight="25.0" prefWidth="266.0" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cbActividad" prefHeight="25.0" prefWidth="266.0" promptText="Selecciona una actividad" GridPane.rowIndex="5" />
                                     <DatePicker fx:id="dpFecha" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Label text="Turno *" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblActividad" text="Ninguna Actividad Seleccionada" GridPane.columnSpan="2" GridPane.rowIndex="8">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -250,6 +256,7 @@
                               </Label>
                               <CheckBox fx:id="cbFuturasAct" mnemonicParsing="false" text="Deseo recibir información sobre futuras actividades" />
                               <CheckBox fx:id="cbNormas" mnemonicParsing="false" text="Acepto las normas de participación y la politica de privacidad" />
+                              <Label fx:id="lblNotificacion" text="No recibirás notificaciones" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -270,11 +277,12 @@
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="555.0" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="btLimpiarForm" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 7;" text="Limpiar">
+                              <Label fx:id="lblFormulario" text="Formulario incompleto" />
+                              <Button fx:id="btLimpiarForm" mnemonicParsing="false" onAction="#onLimpiarForm" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 7;" text="Limpiar">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
-                              <Button fx:id="btEnviarForm" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Enviar">
+                              <Button fx:id="btEnviarForm" mnemonicParsing="false" onAction="#onEnviarForm" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Enviar">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
