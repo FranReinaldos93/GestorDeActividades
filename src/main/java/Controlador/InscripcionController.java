@@ -97,8 +97,10 @@ public class InscripcionController extends ControladorPrincipal implements Initi
                 "Excursión a moratalla",
                 "Visita Teatro Romano de Cartagena",
                 "Visita Catedral de Murcia",
+                "Asistencia a la Gamescon",
                 "Buceo en Aguilas",
-                "Visita al castillo de Lorca"
+                "Visita al castillo de Lorca",
+                "Viaje a las oficinas ubisoft montreal"
         );
 
         //declaración del listener para cambiar el label en función de la actividad:
@@ -131,7 +133,7 @@ public class InscripcionController extends ControladorPrincipal implements Initi
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Limpiar Formulario");
             alerta.setHeaderText("Limpiar Formulario");
-            alerta.setContentText("¿estás seguro?");
+            alerta.setContentText("¿Estás seguro?");
             Optional<ButtonType> resultado = alerta.showAndWait();
             
             if (resultado.isPresent()
@@ -163,6 +165,7 @@ public class InscripcionController extends ControladorPrincipal implements Initi
         String actividad = cbActividad.getValue();
         //ArrayList para almacenar los mensajes de error al validar uno por uno
         ArrayList<String> vacios = new ArrayList<>();
+        //condición, si el campo está vacio almacena el mensaje en el array
         if (nombre.isEmpty()) {
             vacios.add("El campo nombre está vacio");
         }
@@ -200,7 +203,7 @@ public class InscripcionController extends ControladorPrincipal implements Initi
         } else {
             
             lblFormulario.setText("¡Formulario Completado y enviado!");
-            //si el array está vacio, quiere decir que todo está validad entonces mostramos la info
+            //si el array está vacio, quiere decir que todo está validad, entonces mostramos la info
             String datos = "Nombre: " + nombre + "\n"
                     + "Apellido: " + apellido + "\n"
                     + "Email: " + email + "\n"

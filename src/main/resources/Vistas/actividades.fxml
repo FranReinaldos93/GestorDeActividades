@@ -158,7 +158,7 @@
                   <Insets bottom="20.0" left="30.0" right="10.0" top="22.0" />
                </padding>
             </VBox>
-            <TabPane maxWidth="1.7976931348623157E308" prefHeight="385.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane fx:id="tabpActividades" maxWidth="1.7976931348623157E308" prefHeight="385.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab text="Todas">
                   <content>
@@ -166,10 +166,10 @@
                            <children>
                               <HBox prefHeight="47.0" prefWidth="856.0" spacing="10.0">
                                  <children>
-                                    <TextField promptText="Buscar Actividades..." HBox.hgrow="ALWAYS" />
-                                    <ComboBox prefWidth="150.0" promptText="Categoría" />
-                                    <ComboBox prefWidth="150.0" promptText="Estado" />
-                                    <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="88.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 8;" text="Buscar">
+                                    <TextField fx:id="txfBuscar" promptText="Buscar Actividades..." HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="cbCategorias" prefWidth="150.0" promptText="Categoría" />
+                                    <ComboBox fx:id="cbEstado" prefWidth="150.0" promptText="Estado" />
+                                    <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#onBuscarActividad" prefHeight="33.0" prefWidth="88.0" style="-fx-background-color: #e0ecfb; -fx-background-radius: 8;" text="Buscar">
                                        <graphic>
                                           <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -181,7 +181,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 5;" text="Nueva Actividad">
+                                    <Button fx:id="btnNuevaActividad" mnemonicParsing="false" onAction="#onDialogoNuevaActividad" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 5;" text="Nueva Actividad">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Button>
@@ -261,6 +261,32 @@
                            </children>
                         </HBox>
                         <Label text="12 total" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="233.0" spacing="10.0" style="-fx-background-color: #FFFF82; -fx-background-radius: 10;">
+                     <children>
+                        <HBox prefHeight="32.0" prefWidth="213.0" spacing="7.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/informacion.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Pestaña de actividades">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lblPestañaAct" text="Pestaña actual: Todas">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
