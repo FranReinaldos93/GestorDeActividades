@@ -14,7 +14,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -25,7 +24,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #C8CACC;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button fx:id="btnInicio" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInicio" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
+            <Button fx:id="btnInicio" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInicio" prefHeight="40.0" style="-fx-background-color: transparent; -fx-alignment: center-left;" text="Inicio">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +36,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button fx:id="btnInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInscripcion" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inscripción">
+            <Button fx:id="btnInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInscripcion" prefHeight="40.0" style="-fx-background-color: transparent; -fx-alignment: center-left;" text="Inscripción">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,7 +48,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button fx:id="btnActividades" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirActividades" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Actividades">
+            <Button fx:id="btnActividades" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirActividades" prefHeight="50.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7; -fx-alignment: center-left;" text="Actividades">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +60,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button fx:id="btnConfiguracion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirConfiguracion" prefHeight="40.0" style="-fx-background-color: transparent;" text="Configuración">
+            <Button fx:id="btnConfiguracion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirConfiguracion" prefHeight="40.0" style="-fx-background-color: transparent; -fx-alignment: center-left;" text="Configuración">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -190,37 +189,64 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
                                  </padding>
                               </HBox>
-                              <TableView prefHeight="382.0" prefWidth="857.0" VBox.vgrow="ALWAYS">
+                              <TableView fx:id="tablaActividades" prefHeight="382.0" prefWidth="880.0" VBox.vgrow="ALWAYS">
                                 <columns>
-                                  <TableColumn prefWidth="200.0" text="Actividad" />
-                                  <TableColumn prefWidth="150.0" text="Categoria" />
-                                    <TableColumn prefWidth="125.0" text="Fecha" />
-                                    <TableColumn prefWidth="75.0" text="Plazas" />
-                                    <TableColumn prefWidth="125.0" text="Estado" />
+                                  <TableColumn fx:id="colActividad" prefWidth="200.0" text="Actividad" />
+                                  <TableColumn fx:id="colCategoria" prefWidth="150.0" text="Categoria" />
+                                    <TableColumn fx:id="colFecha" prefWidth="125.0" text="Fecha" />
+                                    <TableColumn fx:id="colPlazas" prefWidth="75.0" text="Plazas" />
+                                    <TableColumn fx:id="colEstado" prefWidth="125.0" text="Estado" />
                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                            </children>
                         </VBox>
                   </content>
                 </Tab>
-                <Tab text="Culturales">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                  <Tab text="Deportivas">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
+                  <Tab text="Culturales">
+                     <content>
+                        <VBox>
+                           <children>
+                              <HBox prefHeight="47.0" prefWidth="856.0" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
                   </Tab>
-                  <Tab text="Técnológicas">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
+                  <Tab text="Deportivas">
+                     <content>
+                        <VBox>
+                           <children>
+                              <HBox prefHeight="47.0" prefWidth="856.0" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Tecnológicas">
+                     <content>
+                        <VBox>
+                           <children>
+                              <HBox prefHeight="47.0" prefWidth="856.0" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
                   </Tab>
               </tabs>
             </TabPane>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox prefHeight="131.0" prefWidth="880.0" spacing="10.0">
                <children>
                   <VBox prefHeight="100.0" prefWidth="308.0" spacing="10.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
                      <children>
@@ -238,7 +264,13 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label text="Seleciona una actividad de la tabla" />
+                        <Label fx:id="lblActividadSelec" text="Seleciona una actividad de la tabla" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="btEditar" disable="true" mnemonicParsing="false" onAction="#onEditar" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: E9F2F5; -fx-border-radius: 5;" text="Editar" />
+                              <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#onEliminar" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: E9F2F5; -fx-border-radius: 5;" text="Eliminar" />
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -260,7 +292,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label text="12 total" />
+                        <Label fx:id="lblTotalActividades" text="12 total" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

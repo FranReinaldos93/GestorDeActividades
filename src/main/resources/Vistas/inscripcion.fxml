@@ -28,7 +28,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #C8CACC;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button fx:id="btnInicio" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInicio" prefHeight="40.0" style="-fx-background-color: transparent;" text="Inicio">
+            <Button fx:id="btnInicio" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInicio" prefHeight="40.0" style="-fx-background-color: transparent; -fx-alignment: center-left;" text="Inicio">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,7 +40,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button fx:id="btnInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInscripcion" prefHeight="40.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7;" text="Inscripción">
+            <Button fx:id="btnInscripcion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirInscripcion" prefHeight="50.0" style="-fx-background-color: #52A3F7; -fx-background-radius: 7; -fx-alignment: center-left;" text="Inscripción">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button fx:id="btnActividades" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirActividades" prefHeight="40.0" style="-fx-background-color: transparent;" text="Actividades">
+            <Button fx:id="btnActividades" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirActividades" prefHeight="40.0" style="-fx-background-color: transparent; -fx-alignment: center-left;" text="Actividades">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,7 +64,7 @@
                   <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
                </padding>
             </Button>
-            <Button fx:id="btnConfiguracion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirConfiguracion" prefHeight="40.0" style="-fx-background-color: transparent;" text="Configuración">
+            <Button fx:id="btnConfiguracion" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAbrirConfiguracion" prefHeight="40.0" style="-fx-background-color: transparent; -fx-alignment: center-left;" text="Configuración">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>

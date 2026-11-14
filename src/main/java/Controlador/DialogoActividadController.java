@@ -4,7 +4,11 @@
  */
 package Controlador;
 
+import Main.GestorDeActividades;
+import Modelo.Actividad;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,14 +39,23 @@ public class DialogoActividadController implements Initializable {
     private Spinner<Integer> spPlazasTotal;
     @FXML
     private Spinner<Integer> spPlazasOcupadas;
-    
-        //constructor para conectar con la ventana principal de actividades
-    private ActividadesController ControladorActividades;
+
     @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
 
+    
+        
+    //constructor para conectar con la ventana principal de actividades y su setter
+    ActividadesController controladorActividades;
+
+    public void setControladorActividades(ActividadesController ControladorActividades) {
+        this.controladorActividades = ControladorActividades;
+
+    }
+   
+    
     /**
      * Initializes the controller class.
      */
@@ -56,25 +70,94 @@ public class DialogoActividadController implements Initializable {
         // TODO
     }    
     
-    //metodo para conectar ambos controladores
-        public void setControladorActividades(ActividadesController ControladorActividades) {
-        this.ControladorActividades = ControladorActividades;
-        
-        
+
+    private Actividad actividadEditar;  
+
+    public void setActividad(Actividad actividad) {
+        this.actividadEditar = actividad;
+        if (actividad != null) {
+            txfNombre.setText(actividad.getNombre());
+            cbCategoria.setValue(actividad.getCategoria());
+            dpFecha.setValue(actividad.getFecha());
+            spPlazasTotal.getValueFactory().setValue(actividad.getPlazasTotales());
+            spPlazasOcupadas.getValueFactory().setValue(actividad.getPlazasOcupadas());
+        }
     }
 
     @FXML
     private void onGuardarActividad(ActionEvent event) {
-        
-        Alert alertainf = new Alert(Alert.AlertType.INFORMATION);
-        alertainf.setTitle("Nueva Actividad");
-        alertainf.setHeaderText("Más Adelante");
-        alertainf.setContentText("Se creará en la practica 3");
-        alertainf.showAndWait();
+
+        String nombre = txfNombre.getText().trim();
+        String categoria = cbCategoria.getValue();
+        LocalDate fecha = dpFecha.getValue();
+        int plazastotal = spPlazasTotal.getValue();
+        int plazasOcup = spPlazasOcupadas.getValue();
+
+        ArrayList<String> vacios = new ArrayList<>();
+        if (nombre.isEmpty()) {
+            vacios.add("El campo nombre debe estar relleno");
+        }
+        if (categoria == null) {
+            vacios.add("Debe elegir una categoria");
+        }
+        if (fecha == null) {
+            vacios.add("Debe seleccionar una fecha");
+        }
+        if (plazastotal == 0) {
+            vacios.add("Debe asignar un numero total de plazas");
+        }
+        if (!vacios.isEmpty()) {
+            Alert alertaError = new Alert(Alert.AlertType.ERROR);
+            alertaError.setTitle("Error: Faltan datos");
+            alertaError.setHeaderText("Error: Faltan datos");
+            alertaError.setContentText(" - " + String.join("\n-", vacios));
+            alertaError.showAndWait();
+            return;
+
+        }
+
+        if (actividadEditar != null) {
+            //funcionalidad para cuando es editar
+            actividadEditar.setNombre(nombre);
+            actividadEditar.setCategoria(categoria);
+            actividadEditar.setFecha(fecha);
+            if(plazastotal<plazasOcup){
+                Alert alertaError= new Alert(Alert.AlertType.ERROR);
+                alertaError.setTitle("ERROR");
+                alertaError.setHeaderText("El número de plazas total no puede ser menor al ya ocupadas");
+                alertaError.setContentText("Revise el número total de plazas");
+                alertaError.showAndWait();
+                return;
+            }
+            actividadEditar.setPlazasTotales(plazastotal);
+            actividadEditar.setPlazasOcupadas(plazasOcup);
+            controladorActividades.refrescarTabla();
+        } else {
+            //funcionalidad cuando es nueva activdad
+
+            Actividad nueva = new Actividad();
+            nueva.setId(GestorDeActividades.getDatos().siguienteId());
+            nueva.setNombre(nombre);
+            nueva.setCategoria(categoria);
+            nueva.setFecha(fecha);
+            nueva.setPlazasTotales(plazastotal);
+            nueva.setPlazasOcupadas(plazasOcup);
+            nueva.setEstado("Abierta");
+            GestorDeActividades.getDatos().getActividades().add(nueva);
+            controladorActividades.refrescarTabla();
+
+        }
+        Stage stage = (Stage) btnGuardar.getScene().getWindow();
+        stage.close();
+
     }
 
     @FXML
     private void onCancelarActividad(ActionEvent event) {
+        
+        Stage stage= (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+        
     }
     
 }

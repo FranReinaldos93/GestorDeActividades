@@ -5,9 +5,13 @@
 package Controlador;
 
 import Main.GestorDeActividades;
+import Modelo.Actividad;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +20,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.print.StreamPrintServiceFactory;
 
 /**
  * FXML Controller class
@@ -51,6 +60,7 @@ public class ActividadesController extends ControladorPrincipal implements Initi
     private MenuItem miAcercaDe;
     @FXML
     private Button btnNuevaActividad;
+    //Pestaña Todas
     @FXML
     private TextField txfBuscar;
     @FXML
@@ -63,46 +73,165 @@ public class ActividadesController extends ControladorPrincipal implements Initi
     private Label lblPestañaAct;
     @FXML
     private TabPane tabpActividades;
+    @FXML
+    private TableView<Actividad> tablaActividades;
+    @FXML
+    private TableColumn<Actividad, String> colActividad;
+    @FXML
+    private TableColumn<Actividad, String> colCategoria;
+    @FXML
+    private TableColumn<Actividad, LocalDate> colFecha;
+    @FXML
+    private TableColumn<Actividad, String> colPlazas;
+    @FXML
+    private TableColumn<Actividad, String> colEstado;
+    @FXML
+    private Button btEditar;
+    @FXML
+    private Button btnEliminar;
+    @FXML
+    private Label lblActividadSelec;
+    @FXML
+    private Label lblTotalActividades;
 
     /**
      * Initializes the controller class.
      */
+    //Metodo para contar el numero de actividades totales
+    private void actualizarTotal() {
+        int sumActividad = tablaActividades.getItems().size();
+        lblTotalActividades.setText("Total Actividades: " + sumActividad);
+    }
+    
+    public void refrescarTabla(){
+    tablaActividades.refresh();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cbCategorias.getItems().addAll(
-        "Culturales","Deportivas","Tecnológicas"
-        );
-        cbEstado.getItems().addAll("Abierta","Completa","Finalizada");
+        //Configuración del combobox categorias
+        cbCategorias.getItems().add("Todas");
+        
+        for(Actividad actividad: GestorDeActividades.getDatos().getActividades()){
+        String categoria = actividad.getCategoria();
+        if (!cbCategorias.getItems().contains(categoria)){
+        cbCategorias.getItems().add(categoria);
+        }
+        }
+        cbCategorias.setValue("Todas");
+        //configuración combobox estado
+        cbEstado.getItems().add("Todas");
+
+        for (Actividad actividad : GestorDeActividades.getDatos().getActividades()) {
+            String estado = actividad.getEstado();
+            if (!cbEstado.getItems().contains(estado)) {
+                cbEstado.getItems().add(estado);
+            }
+        }
+
         //Nombre pestaña incial:
         lblPestañaAct.setText("Pestaña Activa: "+ tabpActividades.getSelectionModel().getSelectedItem().getText());
         //listener para cada vez que cambie pestaña se actuelice el label
         tabpActividades.getSelectionModel().selectedItemProperty().addListener((obs,anterior,nueva)->{
-        
         if(nueva!=null){
         lblPestañaAct.setText("Pestaña Activa: "+nueva.getText());
         }
+        });
+       
+        //creamos la instancia de la tabla
+        colActividad.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        colPlazas.setCellValueFactory(new PropertyValueFactory<>("plazas"));
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
+        //Llamamos al objeto creado desde el main
+        
+        //Aplicar filtros
+        FilteredList<Actividad> filtradas = new FilteredList<>(GestorDeActividades.getDatos().getActividades());
+        tablaActividades.setItems(filtradas);
+
+        cbCategorias.valueProperty().addListener((obs, antigua, nueva) -> {
+            if (nueva == null || nueva.equals("Todas")) {
+
+                filtradas.setPredicate(a -> true);
+            } else {
+                filtradas.setPredicate(a -> a.getCategoria().equals(nueva));
+            }
+        });
+        cbEstado.valueProperty().addListener((obs, antigua, nueva) -> {
+            if (nueva == null || nueva.equals("Todas")) {
+
+                filtradas.setPredicate(a -> true);
+            } else {
+                filtradas.setPredicate(a -> a.getEstado().equals(nueva));
+            }
+        });
+        txfBuscar.textProperty().addListener((obs, antigua, nueva) -> {
+            if (nueva.isEmpty()) {
+
+                filtradas.setPredicate(a -> true);
+            } else {
+                filtradas.setPredicate(a -> a.getNombre().toLowerCase().contains(nueva.toLowerCase()));
+            }
+        });
+        
+        
+        
+        //Listener
+        tablaActividades.getSelectionModel().selectedItemProperty().addListener((obs, anterior, nueva) -> {
+
+            //botones editar y eliminar disponibles al usar una linea
+            boolean seleccion = nueva != null;
+            btEditar.setDisable(!seleccion);
+            btnEliminar.setDisable(!seleccion);
+            //cambio del label según actividad seleccionada
+            if (nueva != null) {
+                lblActividadSelec.setText("Actividad: " + nueva.getNombre());
+            }
+
         
         });
-    }    
+        //Llamada al metodo para que calcule el total de actividades
+        actualizarTotal();
+        
+        //Listener suma del total de actividades en la tabla (buscado con IA)
+        tablaActividades.getItems().addListener((javafx.collections.ListChangeListener<Actividad>) cambio-> {
 
-    @FXML
-    private void onDialogoNuevaActividad(ActionEvent event) throws IOException {
+            actualizarTotal();
+        });
+
+        
+        
+    }    
+    
+    //hacemos un metodo para abrir el dialogo, ya que lo vamos a reutilizar en editar y nueva actividad
+    public void abrirDialogo(Actividad actividad) throws IOException {
         //abrir ventana nueva ventana
 
         FXMLLoader fxmlLoader = new FXMLLoader(GestorDeActividades.class.getResource("/Vistas/dialogoActividad.fxml"));
         Parent root = fxmlLoader.load();
         //conectar con dialogo de actividad secundario
-        DialogoActividadController controladorDialogo= fxmlLoader.getController();
+        DialogoActividadController controladorDialogo = fxmlLoader.getController();
         controladorDialogo.setControladorActividades(this);
-        
+        controladorDialogo.setActividad(actividad);
+
         Scene nuevoDialogo = new Scene(root, 350, 380);
         Stage dialogo = new Stage();
         //ventana de dialogo modal
         dialogo.initOwner(txfBuscar.getScene().getWindow());
         dialogo.initModality(Modality.WINDOW_MODAL);
-        dialogo.setTitle("Nueva Actividad");
+        dialogo.setTitle(actividad == null ? "Nueva Actividad" : "Editar Actividad");
         dialogo.setScene(nuevoDialogo);
         dialogo.show();
+
+    }
+
+    @FXML
+    private void onDialogoNuevaActividad(ActionEvent event) throws IOException {
+
+        //parametro a null para que cree una nueva
+        abrirDialogo(null);
     }
 
     @FXML
@@ -131,6 +260,34 @@ public class ActividadesController extends ControladorPrincipal implements Initi
 
     }
 
+    @FXML
+    private void onEditar(ActionEvent event) throws IOException {
+        
+       Actividad seleccionada = tablaActividades.getSelectionModel().getSelectedItem();
+        abrirDialogo(seleccionada);
+
+        
+        
+    }
+
+    @FXML
+    private void onEliminar(ActionEvent event) {
+        Actividad seleccionada = tablaActividades.getSelectionModel().getSelectedItem();
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Borrar Actividad");
+        alerta.setHeaderText("Se va a borrar la actividad: " + seleccionada.getNombre());
+        alerta.setContentText("¿Estás seguro?");
+        Optional<ButtonType> resultado = alerta.showAndWait();
+
+        if (resultado.isPresent()
+                && resultado.get() == ButtonType.OK) {
+
+            GestorDeActividades.getDatos().getActividades().remove(seleccionada);
+
+        }
+
+    }
 
 
 }

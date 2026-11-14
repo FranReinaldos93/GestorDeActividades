@@ -5,6 +5,7 @@
 package Controlador;
 
 import Main.GestorDeActividades;
+import Modelo.Actividad;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.util.StringConverter;
 
 /**
  * FXML Controller class
@@ -41,7 +43,7 @@ public class InscripcionController extends ControladorPrincipal implements Initi
     @FXML
     private TextField txtEmail;
     @FXML
-    private ComboBox<String> cbActividad;
+    private ComboBox<Actividad> cbActividad;
     @FXML
     private DatePicker dpFecha;
     @FXML
@@ -93,23 +95,29 @@ public class InscripcionController extends ControladorPrincipal implements Initi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cbActividad.getItems().addAll(
-                "Excursión a moratalla",
-                "Visita Teatro Romano de Cartagena",
-                "Visita Catedral de Murcia",
-                "Asistencia a la Gamescon",
-                "Buceo en Aguilas",
-                "Visita al castillo de Lorca",
-                "Viaje a las oficinas ubisoft montreal"
-        );
+        
+        //combobox categoria para que coja las actividades creadas en DatosAplicación
+        cbActividad.setItems(GestorDeActividades.getDatos().getActividades());
+        //convertir el texto del combobox para lectura correcta de la actividad
+        cbActividad.setConverter(new StringConverter<Actividad>() {
 
+            @Override
+            public String toString(Actividad actividad) {
+                return actividad == null ? "" : actividad.getNombre();
+            }
+
+            @Override
+            public Actividad fromString(String texto) {
+                return null;
+            }
+        });
         //declaración del listener para cambiar el label en función de la actividad:
         cbActividad.valueProperty().addListener((obs, anterior, nuevo) -> {
             
             if (nuevo == null) {
                 lblActividad.setText("Ninguna Actividad Seleccionada");
             } else {
-                lblActividad.setText("Activdad Seleccionada: " + nuevo);
+                lblActividad.setText("Activdad Seleccionada: " + nuevo.getNombre());
             }
         });
         //debemos hacerlo con un listener, porque si no al usar limpiar no reinicia al hacer click en el checkbox
@@ -162,7 +170,7 @@ public class InscripcionController extends ControladorPrincipal implements Initi
         LocalDate fecha = dpFecha.getValue();
         RadioButton turno = (RadioButton) tgTurno.getSelectedToggle();
         boolean aceptarNormas = cbNormas.isSelected();
-        String actividad = cbActividad.getValue();
+        Actividad actividad = cbActividad.getValue();
         //ArrayList para almacenar los mensajes de error al validar uno por uno
         ArrayList<String> vacios = new ArrayList<>();
         //condición, si el campo está vacio almacena el mensaje en el array
@@ -201,20 +209,33 @@ public class InscripcionController extends ControladorPrincipal implements Initi
             alertaError.showAndWait();
             return;
         } else {
-            
-            lblFormulario.setText("¡Formulario Completado y enviado!");
-            //si el array está vacio, quiere decir que todo está validad, entonces mostramos la info
-            String datos = "Nombre: " + nombre + "\n"
-                    + "Apellido: " + apellido + "\n"
-                    + "Email: " + email + "\n"
-                    + "Fecha: " + fecha + "\n"
-                    + "Turno: " + turno.getText() + "\n"
-                    + "Observaciones: " + taObservaciones.getText();
-            Alert alertainf = new Alert(Alert.AlertType.INFORMATION);
-            alertainf.setTitle("Actividad Inscrita");
-            alertainf.setHeaderText("Datos de la actividad: ");
-            alertainf.setContentText(datos);
-            alertainf.showAndWait();
+
+            //si la actividad ya está completa no se suma
+            if (actividad.getPlazasOcupadas() >= actividad.getPlazasTotales()) {
+                Alert alertaError = new Alert(Alert.AlertType.ERROR);
+                alertaError.setTitle("Actvidad Completa");
+                alertaError.setHeaderText("La actividad Seleccionada está completa");
+                alertaError.setContentText("Elija otra actividad");
+                alertaError.showAndWait();
+
+            } else {
+                actividad.setPlazasOcupadas(actividad.getPlazasOcupadas() + 1);
+
+                lblFormulario.setText("¡Formulario Completado y enviado!");
+                //si el array está vacio, quiere decir que todo está validad, entonces mostramos la info
+                String datos = "Actividad Seleccionada: "+actividad.getNombre()+"\n"
+                        +"Nombre: " + nombre + "\n"
+                        + "Apellido: " + apellido + "\n"
+                        + "Email: " + email + "\n"
+                        + "Fecha: " + fecha + "\n"
+                        + "Turno: " + turno.getText() + "\n"
+                        + "Observaciones: " + taObservaciones.getText();
+                Alert alertainf = new Alert(Alert.AlertType.INFORMATION);
+                alertainf.setTitle("Actividad Inscrita");
+                alertainf.setHeaderText("Datos de la actividad: ");
+                alertainf.setContentText(datos);
+                alertainf.showAndWait();
+            }
         }
         
     }

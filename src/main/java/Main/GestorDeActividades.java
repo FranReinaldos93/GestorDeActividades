@@ -4,6 +4,7 @@
 
 package Main;
 
+import Modelo.DatosAplicacion;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,14 @@ import javafx.stage.Stage;
 public class GestorDeActividades extends Application{
     //declaración de la escena 
     private static Scene escena;
+    
+    //Creamos el objeto de los datos de la aplicación por defecto con su metodo get, para que así se cargue desde el main
+    static DatosAplicacion datos = new DatosAplicacion();
+
+    public static DatosAplicacion getDatos() {
+        return datos;
+    }
+    
     
     //Metodo del hilo de nuestra app
         @Override
