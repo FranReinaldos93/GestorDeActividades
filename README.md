@@ -5,7 +5,6 @@ Proyecto del modulo desarrollo de interfaces de 2º DAM, actualmente en desarrol
 ## 🛠️ Tecnologías
 - Java
 - JavaFx
-- PostgreSQL
 - NetBeans
 - SceneBuilder
 
