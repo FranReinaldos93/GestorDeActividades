@@ -1,6 +1,13 @@
 # Gestor de Actividades
 
-Proyecto del modulo desarrollo de interfaces de 2º DAM, actualmente en desarrollo
+Proyecto del modulo desarrollo de interfaces de 2º DAM.
+Realización de vistas, configuración de funcionalidad en cada una de ellas.
+La aplicación consiste en un gestor de actividades que consta de 4 vistas principales:
+- Inicio
+- Registro de usuarios a las actividades
+- Consulta, Añadir y modificar actividades
+- Configuración de la aplicación
+[Actualmente en desarrollo}
 
 ## 🛠️ Tecnologías
 - Java
